@@ -1,0 +1,45 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<div class="col-md-9">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3>Tambah Surat Masuk <a class="btn btn-danger" href="/suma/">Kembali</a></h3>
+    </div>
+    <div class="panel-body">
+      {% if message is not None %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endif %}
+      <form action="/suma/tambah/" method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <div for="{{ form.jenis_surat.label }}">{{ form.jenis_surat.label }}</div>
+          {{ form.jenis_surat }}
+        </div>
+        <div class="form-group">
+          <div for="{{ form.tanggal_kirim.label }}">{{ form.tanggal_kirim.label }}</div>
+          {{ form.tanggal_kirim }}
+        </div>
+        <div class="form-group">
+          <div for="{{ form.tanggal_terima.label }}">{{ form.tanggal_terima.label }}</div>
+          {{ form.tanggal_terima }}
+        </div>
+        <div class="form-group">
+          <div>{{ form.no_surat.label }}</div>
+          {{ form.no_surat }}
+        </div>
+        <div class="form-group">
+          <div>{{ form.pengirim.label }}</div>
+          {{ form.pengirim }}
+        </div>
+        <div class="form-group">
+          <div>{{ form.perihal.label }}</div>
+          {{ form.perihal }}
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg">Simpan</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

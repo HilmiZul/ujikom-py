@@ -1,0 +1,41 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<div class="col-md-9">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3>Ubah Surat Keluar dari: {{ sukel.pengirim }} <a class="btn btn-danger" href="/sukel/">Kembali</a></h3>
+    </div>
+    <div class="panel-body">
+      {% if message is not None %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endif %}
+      <form action="/sukel/ubah/{{ sukel.id }}" method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <div for="">Jenis Surat</div>
+          <input class="form-control" type="text" name="jenis_surat" value="{{ sukel.jenis_surat }}" required="required">
+        </div>
+        <div class="form-group">
+          <div for="">Tanggal Kirim</div>
+          <input class="form-control" type="date" name="tgl_kirim" value="{{ sukel.tanggal_kirim | date:"Y-m-d" }}" required="required">
+        </div>
+        <div class="form-group">
+          <div for="">No.Surat</div>
+          <input class="form-control" type="text" name="no_surat" value="{{ sukel.no_surat }}" required="required">
+        </div>
+        <div class="form-group">
+          <div for="">Pengirim</div>
+          <input class="form-control" type="text" name="pengirim" value="{{ sukel.pengirim }}" required="required">
+        </div>
+        <div class="form-group">
+          <div for="">Perihal</div>
+          <input class="form-control" type="text" name="perihal" value="{{ sukel.perihal }}" required="required">
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg">Simpan</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

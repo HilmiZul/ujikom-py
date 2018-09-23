@@ -1,0 +1,45 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<div class="col-md-9">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3>Ubah Surat Masuk dari: {{ suma.pengirim }} <a class="btn btn-danger" href="/suma/">Kembali</a></h3>
+    </div>
+    <div class="panel-body">
+      {% if message is not Noe %}
+        <div class="alert alert-success">{{ message }}</div>
+      {% endif %}
+      <form action="/suma/ubah/{{ suma.id }}" method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <div for="">Jenis Surat</div>
+          <input class="form-control" type="text" name="jenis_surat" value="{{ suma.jenis_surat }}">
+        </div>
+        <div class="form-group">
+          <div for="">Tanggal Kirim</div>
+          <input class="form-control" type="date" name="tgl_kirim" value="{{ suma.tanggal_kirim | date:"Y-m-d" }}">
+        </div>
+        <div class="form-group">
+          <div for="">Tanggal Terima</div>
+          <input class="form-control" type="date" name="tgl_terima" value="{{ suma.tanggal_terima | date:"Y-m-d" }}">
+        </div>
+        <div class="form-group">
+          <div for="">No.Surat</div>
+          <input class="form-control" type="text" name="no_surat" value="{{ suma.no_surat }}">
+        </div>
+        <div class="form-group">
+          <div for="">Pengirim</div>
+          <input class="form-control" type="text" name="pengirim" value="{{ suma.pengirim }}">
+        </div>
+        <div class="form-group">
+          <div for="">Perihal</div>
+          <input class="form-control" type="text" name="perihal" value="{{ suma.perihal }}">
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg">Simpan</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

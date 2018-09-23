@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  {% include "layout/head.html" %}
+  <body>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-12 text-center">
+          <h2 class="page-header">Aplikasi Pengarsipan Surat</h2>
+        </div>
+
+        {% if request.session.id is not None %}
+          {% include "layout/menu.html" %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+      </div>
+
+    </div>
+
+    {% include "layout/js.html" %}
+  </body>
+</html>
